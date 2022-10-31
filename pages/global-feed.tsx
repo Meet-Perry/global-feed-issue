@@ -1,8 +1,9 @@
 import { NextPage } from 'next'
 import Link from 'next/link'
-import { ApiEndpoint, ApiRegion, PostTargetType } from '@amityco/js-sdk'
+import { ApiEndpoint, ApiRegion, PostDataType, PostTargetType } from '@amityco/js-sdk'
 import AmityUiKitFeed from '../components/AmityUiKitFeed'
 import AmityUiKitProvider from '../components/AmityUiKitProvider'
+import { CustomPostRenderer } from './CustomPostRenderer'
 
 const PublicGroupPage: NextPage = () => {
   return (
@@ -18,6 +19,9 @@ const PublicGroupPage: NextPage = () => {
         apiRegion={ApiRegion.US}
         apiEndpoint={ApiEndpoint.US}
         displayName="Test User"
+        postRenderers={{
+          [PostDataType.TextPost]: CustomPostRenderer,
+        }}
       >
         <AmityUiKitFeed targetType={PostTargetType.GlobalFeed} />
       </AmityUiKitProvider>
